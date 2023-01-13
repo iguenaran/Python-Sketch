@@ -1,0 +1,21 @@
+import cv2
+
+
+def main():
+    # Read the image
+    img = cv2.imread('cat.jpg')
+    # Convert the image to gray sketch
+    gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    # Apply blur to the image
+    gray_image = cv2.GaussianBlur(gray_image, (5, 5), 0)
+    # Apply edge detector to the image
+    edges = cv2.Canny(gray_image, 50, 150)
+    # Invert the image
+    inverted_edges = cv2.bitwise_not(edges)
+    # Display the sketch
+    cv2.imshow('Cat sketch', inverted_edges)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+
+main()
